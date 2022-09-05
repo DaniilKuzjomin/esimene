@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,29 +13,29 @@ namespace esimene
         public string amet;
 
 
-        public Tootaja(string asutus, string amet, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk, double tulumaks):base(nimi, sunniaasta, InimSugu, maksuvaba,)
+        public Tootaja(string asutus, string amet, int tootasu, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk): base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
         {
             this.asutus = asutus;
             this.amet = amet;
-            this.maksuvaba = maksuvaba;
         }
 
-        public object Sugu { get; private set; }
-
-        public double arvutaSissetulek(double maksuvaba, double tulumaks)
+        public override double arvSisse(double maksuvaba, double tulumaks, double palk)
         {
-            double netopalk = ((tootasu - maksuvaba) * (1-(tulumaks / 100))) + maksuvaba;
+            double netopalk = ((palk - maksuvaba) * (1 - (tulumaks / 100))) + maksuvaba;
             return netopalk;
         }
 
+        public int arvutaVanus()
+        {
+            int praeguneAasta = DateTime.Now.Year;
+            int vanus = praeguneAasta - sunniaasta;
+            return vanus;
+        }
+        
+
         public override void printInfo()
         {
-            Console.WriteLine($"Tema asutus on {asutus}, ta töötab {amet}, tema netto palk on, tema nimi on {nimi} {Sugu} ja {arvutaVanus} ");
-        }
-
-        private object arvutaSissetulek(int palk, int maksuvaba, double tulumaks)
-        {
-            throw new NotImplementedException();
+            Console.WriteLine($"Tema asutus on {asutus}, ta töötab {amet}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)}, tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {arvutaVanus} ");
         }
     }
 }
