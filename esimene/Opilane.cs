@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,20 +13,29 @@ namespace esimene
         public string klass;
         public string spetsialiseerimine;
 
-        public Opilane(string koolinimi, string klass, string spetsialiseerimine):base()
+        public Opilane(string koolinimi, int klass, string spetsialiseerumine, string nimi, int sunniaasta, sugu isikSugu, double maksuvaba, double palk) : base(nimi, sunniaasta, isikSugu, maksuvaba, palk)
         {
             this.koolinimi = koolinimi;
             this.klass = klass;
             this.spetsialiseerimine = spetsialiseerimine;
         }
 
-        public override void printInfo()
+        public int arvutaVanus()
         {
-            Console.WriteLine("Ta on {0}, Tema nimi on {1}, tema vanus on {2} ja tema sunniaasta on {3}", nimi, sunniaasta,InimSugu );
+            int praeguneAasta = DateTime.Now.Year;
+            int vanus = praeguneAasta - sunniaasta;
+            return vanus;
         }
 
-        public void arvutaSissetulek()
+        public override double arvSisse(double maksuvaba, double tulumaks, double palk)
         {
+            double netopalk = ((palk - maksuvaba) * (1 - (tulumaks / 100))) + maksuvaba;
+            return netopalk;
+        }
+
+        public override void printInfo()
+        {
+            Console.WriteLine($"Tema koolinimi on {koolinimi} ja ta õpib klassis #{klass}, ja tema spetsialiseerimine on {spetsialiseerimine}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)},tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {arvutaVanus()}");
         }
     }
 }
