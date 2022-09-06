@@ -18,8 +18,6 @@ namespace esimene
         public double tulumaks;
 
 
-        public Isik() { }
-
         public Isik(string nimi, int synniaasta, sugu Inimsugu, double maksuvaba, double palk)
         {
             this.nimi = nimi;
@@ -33,6 +31,14 @@ namespace esimene
 
 
         public abstract double arvSisse(double palk, double tulumaks, double maksuvaba);
+
+
+        public int arvutaVanus()
+        {
+            int praeguneAasta = DateTime.Now.Year;
+            int vanus = praeguneAasta - sunniaasta;
+            return vanus;
+        }
 
         public void muudaNimi(string uusNimi) { nimi = uusNimi; }
     }
