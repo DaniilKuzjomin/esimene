@@ -18,7 +18,7 @@ namespace esimene
         public double tulumaks;
 
 
-        public Isik(string nimi, int synniaasta, sugu Inimsugu, double maksuvaba, double palk)
+        public Isik(string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk)
         {
             this.nimi = nimi;
             this.sunniaasta = sunniaasta;
