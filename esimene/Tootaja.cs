@@ -12,7 +12,6 @@ namespace esimene
         public string asutus;
         public string amet;
 
-
         public Tootaja(string asutus, string amet, int tootasu, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk): base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
         {
             this.asutus = asutus;
@@ -25,17 +24,17 @@ namespace esimene
             return netopalk;
         }
 
-        public int arvutaVanus()
-        {
-            int praeguneAasta = DateTime.Now.Year;
-            int vanus = praeguneAasta - sunniaasta;
-            return vanus;
-        }
-        
+        //public override int arvutaVanus()
+        //{
+        //    int praeguneAasta = DateTime.Now.Year;
+        //    int vanus = praeguneAasta - sunniaasta;
+        //    return vanus;
+        //}
+
 
         public override void printInfo()
         {
-            Console.WriteLine($"Tema asutus on {asutus}, ta töötab {amet}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)}, tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {arvutaVanus} ");
+            Console.WriteLine($"Tema asutus on {asutus}, ta töötab {amet}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)}, tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {base.arvutaVanus()} "); 
         }
     }
 }
