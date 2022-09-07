@@ -11,7 +11,7 @@ using esimene;
 
 Tootaja tootaja = new Tootaja("Polütehnikum", "Õpetaja", 1600, "Aleksei", 1972, Isik.sugu.mees, 500, 1600);
 Opilane Opilane = new Opilane("Tallinna Humanitaargümnaasium", 9, "pöhikool", "Maria", 2007, Isik.sugu.naine, 0, 0);
-Kutsekooliopilane Kutsekooliopilane = new Kutsekooliopilane("THK", "Tarkvaraarendaja", 2, 60, "TARpv21", "Tarkvaraarendaja", "Daniil", 2005, Isik.sugu.mees, 0,0);
+Kutsekooliopilane Kutsekooliopilane = new Kutsekooliopilane("THK", "Viimsi", 460, 3, 4.2, "Tarkvaraarendaja", 2, 60, "TARpv21", "Tarkvaraarendaja", "Daniil", 2005, Isik.sugu.mees, 0,0);
 tootaja.printInfo();
 Kutsekooliopilane.printInfo();
 Opilane.printInfo();
@@ -35,4 +35,10 @@ StreamReader sr = new StreamReader(@"..\..\..\file.txt");
 List<string> Lines = new List<string>();
 int n = sr.ReadToEnd().Split(new char[] { '\n' }).Length;
 
+
+//var file = File.ReadAllText(@"..\..\..\file.txt").Split(", ");
+//foreach (var item in file)
+//{
+//    Console.Write(item + ", ");
+//}
 

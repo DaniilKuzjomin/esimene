@@ -14,17 +14,20 @@ namespace esimene
         public int kursus;
         public int toetus;
 
-        public bool Soidutoetus;
-        public bool Pohitoetus;
-        public bool Eritoetus;
 
         public string elukoht;
         public double keskhinne;
         public int lapsed;
         public double vanemad_palk;
 
-        public Kutsekooliopilane(string oppeasutus, string eriala, int kursus, int toetus, string klass, string spetsialiseerumine, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk) : base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
+        double Soidutoetus = 0;
+        double Pohitoetus = 0;
+        double Eritoetus = 0;
+        double tulemus;
+
+        public Kutsekooliopilane(string oppeasutus,string elukoht, double vanemad_palk, int lapsed,double keskhinne, string eriala, int kursus, int toetus, string klass, string spetsialiseerumine, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk) : base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
         {
+
             this.oppeasutus = oppeasutus;
             this.eriala = eriala;
             this.kursus = kursus;
@@ -43,19 +46,25 @@ namespace esimene
         {
             if (elukoht != "Tallinn")
             {
-                Soidutoetus = true;
+                Soidutoetus = 50;
             }
-            if (keskhinne >= 3.3)
+            if (keskhinne >= 3.4)
             {
-                Pohitoetus = true;
+                Pohitoetus = 60;
             }
-            if (lapsed >= 2 | vanemad_palk >= 500)
+            if (lapsed > 2 || vanemad_palk <= 500)
             {
-                Eritoetus = true;
+                Eritoetus = 90;
             }
+            string toetus = $"sõidetoetus {Soidutoetus}, eritoetus {Eritoetus}, põhitoetus {Pohitoetus}";
+            return toetus;
         }
 
-
+        public double arvToetus()
+        {
+            tulemus = Pohitoetus + Eritoetus + Soidutoetus;
+            return tulemus;
+        }
 
         public override double arvSisse(double maksuvaba, double tulumaks, double palk)
         {
@@ -65,7 +74,7 @@ namespace esimene
         public override void printInfo()
         {
 
-            Console.WriteLine($"Tema õppeasutus on {oppeasutus} ja tema eriala on {eriala}, ta on kursusel #{kursus} ja tema toetus on {toetus}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)}, tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {base.arvutaVanus()}");
+            Console.WriteLine($"Tema õppeasutus on {oppeasutus} ja tema eriala on {eriala}, ta on kursusel #{kursus} ja tema toetus on {Toetus()}, tema töötasu on {arvSisse(palk, maksuvaba, tulumaks)}, tema nimi on {nimi}, ta on {InimSugu} ja tema vanus on {base.arvutaVanus()}");
         }
 
     }
