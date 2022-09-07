@@ -12,7 +12,7 @@ namespace esimene
         public string asutus;
         public string amet;
 
-        public Tootaja(string asutus, string amet, int tootasu, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk): base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
+        public Tootaja(string asutus, string amet, string nimi, int sunniaasta, sugu InimSugu, double maksuvaba, double palk): base(nimi, sunniaasta, InimSugu, maksuvaba, palk)
         {
             this.asutus = asutus;
             this.amet = amet;

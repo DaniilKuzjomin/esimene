@@ -1,3 +1,1 @@
-Aleksei, 50, mees
-Maria, 15, naine
-Daniil, 17, mees
+Polütehnikum, Õpetaja, Aleksei, 1972, mees, 500, 1600
